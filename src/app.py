@@ -9,21 +9,12 @@ from backend2 import (
     chat_about_investigation
 )
 
-
-# ============================================================
-# PAGE CONFIG
-# ============================================================
-
 st.set_page_config(
     page_title="NewsLens AI",
     page_icon="📰",
     layout="wide"
 )
 
-
-# ============================================================
-# STYLING
-# ============================================================
 
 st.markdown("""
 <style>
@@ -69,10 +60,6 @@ div[data-testid="stMetric"] {
 """, unsafe_allow_html=True)
 
 
-# ============================================================
-# LOAD PROJECT
-# ============================================================
-
 @st.cache_resource(show_spinner=False)
 def load_project():
     return initialize_project()
@@ -106,9 +93,6 @@ clustered_df = project["clustered_df"]
 cluster_topics = project["cluster_topics"]
 
 
-# ============================================================
-# SESSION STATE
-# ============================================================
 
 if "investigation" not in st.session_state:
     st.session_state.investigation = None
@@ -120,9 +104,6 @@ if "last_headline" not in st.session_state:
     st.session_state.last_headline = ""
 
 
-# ============================================================
-# SIDEBAR
-# ============================================================
 
 with st.sidebar:
 
@@ -158,10 +139,6 @@ with st.sidebar:
     )
 
 
-# ============================================================
-# NAVIGATION
-# ============================================================
-
 tabs = st.tabs([
     "📊 Dashboard",
     "🤖 News Investigator",
@@ -170,10 +147,6 @@ tabs = st.tabs([
     "🔎 Topic Discovery"
 ])
 
-
-# ============================================================
-# TAB 1 — DASHBOARD
-# ============================================================
 
 with tabs[0]:
 
@@ -262,10 +235,6 @@ with tabs[0]:
     )
 
 
-# ============================================================
-# TAB 2 — NEWS INVESTIGATOR
-# ============================================================
-
 with tabs[1]:
 
     st.header("AI News Investigator")
@@ -311,7 +280,6 @@ with tabs[1]:
 
         else:
 
-            # Step 1 — ML prediction
             with st.spinner("Running ML prediction..."):
 
                 ml_result = predict_headline(
@@ -320,7 +288,6 @@ with tabs[1]:
                     trained_data
                 )
 
-            # Step 2 — Web investigation
             with st.spinner(
                 "AI is searching the web and analyzing evidence..."
             ):
@@ -350,7 +317,6 @@ with tabs[1]:
                         f"Investigation failed: {str(error)}"
                     )
 
-    # Display saved investigation
     investigation = st.session_state.investigation
 
     if investigation:
@@ -430,10 +396,6 @@ with tabs[1]:
         )
 
 
-# ============================================================
-# TAB 3 — CHATBOT
-# ============================================================
-
 with tabs[2]:
 
     st.header("News Investigation Chat")
@@ -458,14 +420,12 @@ with tabs[2]:
 
         st.divider()
 
-        # Display chat history
         for message in st.session_state.chat_history:
 
             with st.chat_message(message["role"]):
 
                 st.markdown(message["content"])
 
-        # Chat input
         user_message = st.chat_input(
             "Ask about the news, evidence, or sources..."
         )
@@ -507,10 +467,6 @@ with tabs[2]:
 
                         st.error(f"Chat error: {str(error)}")
 
-
-# ============================================================
-# TAB 4 — MODEL EVALUATION
-# ============================================================
 
 with tabs[3]:
 
@@ -572,10 +528,6 @@ with tabs[3]:
         use_container_width=True
     )
 
-
-# ============================================================
-# TAB 5 — TOPIC DISCOVERY
-# ============================================================
 
 with tabs[4]:
 
@@ -641,10 +593,6 @@ with tabs[4]:
                 hide_index=True
             )
 
-
-# ============================================================
-# FOOTER
-# ============================================================
 
 st.divider()
 
