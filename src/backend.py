@@ -24,7 +24,7 @@ from langchain_ollama import ChatOllama, OllamaEmbeddings
 from langchain_core.tools import tool
 from langchain_core.messages import HumanMessage, AIMessage, ToolMessage, SystemMessage
 
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 DATASET_PATH = BASE_DIR / "data" / "fake_news_dataset.csv"
 RANDOM_STATE = 42
 TEST_SIZE = 0.20
