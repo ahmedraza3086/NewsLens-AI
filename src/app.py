@@ -2,7 +2,7 @@
 import streamlit as st
 import pandas as pd
 
-from backend2 import (
+from backend import (
     initialize_project,
     predict_headline,
     investigate_news,
