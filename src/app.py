@@ -117,13 +117,9 @@ with st.sidebar:
     """)
 
     st.divider()
-
     st.metric("Dataset Articles", f"{len(df):,}")
-
     st.metric("Fake Articles", f"{eda['fake_count']:,}")
-
     st.metric("Real Articles", f"{eda['real_count']:,}")
-
     st.divider()
 
     if st.button("🗑️ Reset Investigation", use_container_width=True):
@@ -153,13 +149,9 @@ with tabs[0]:
     st.header("Dataset Dashboard")
 
     col1, col2, col3 = st.columns(3)
-
     col1.metric("Total Headlines", f"{eda['total_records']:,}")
-
     col2.metric("Fake News", f"{eda['fake_count']:,}")
-
     col3.metric("Real News", f"{eda['real_count']:,}")
-
     st.divider()
 
     col1, col2 = st.columns(2)
@@ -173,9 +165,7 @@ with tabs[0]:
     with col2:
 
         st.subheader("Headline Length")
-
         lengths = eda["headline_lengths"].value_counts().sort_index()
-
         st.bar_chart(lengths)
 
     st.divider()
